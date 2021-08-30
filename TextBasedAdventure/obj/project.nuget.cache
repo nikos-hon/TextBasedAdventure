@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Oy3r2mwFPd+fiGacOqel9ANTLy0eyAsa2Lo7neoW3VZm45LmwUgs/bj7KySlxp8uy0GJsBtUAPNKP0QSZ+56yQ==",
+  "dgSpecHash": "rMVD8JeQnostz0CWTeY37P2IYO1DuoGefoVx1js4wWztVa3vU0fd9JUyN6uZG9piK8EQG6zodCTQBBITLfpKOw==",
   "success": true,
   "projectFilePath": "/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/TextBasedAdventure.csproj",
   "expectedPackageFiles": [
+    "/Users/nikos/.nuget/packages/microsoft.netcore.app.runtime.osx-x64/3.1.18/microsoft.netcore.app.runtime.osx-x64.3.1.18.nupkg.sha512",
+    "/Users/nikos/.nuget/packages/microsoft.aspnetcore.app.runtime.osx-x64/3.1.18/microsoft.aspnetcore.app.runtime.osx-x64.3.1.18.nupkg.sha512",
+    "/Users/nikos/.nuget/packages/microsoft.netcore.app.host.osx-x64/3.1.18/microsoft.netcore.app.host.osx-x64.3.1.18.nupkg.sha512",
     "/Users/nikos/.nuget/packages/microsoft.aspnetcore.app.ref/3.1.10/microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512"
   ],
   "logs": []

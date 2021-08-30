@@ -290,7 +290,7 @@ namespace TextBasedAdventure
                             Console.WriteLine();
                             mechanics.PressAnyKey();
                           
-                            Console.WriteLine($"- Άσε με να σου κάνω και άλλο ένα μαγικό ξόρκι για να είσαι πιο υγειής.");
+                            Console.WriteLine($"- Άσε με να σου κάνω και άλλο ένα μαγικό ξόρκι για να είσαι πιο υγιής.");
 
                             // Ζάρι
                             Console.WriteLine();

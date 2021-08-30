@@ -389,7 +389,7 @@ namespace TextBasedAdventure
             Console.WriteLine();
 
             Console.WriteLine($"- Τι συμβαίνει γερο-σοφέ {oldWiseNameCall};");
-            Console.WriteLine($"- Δεν έχουμε χρόνο να σου εξηγήσω βάρβαρε {heroNameCall}, πάρε γρήγορα {weaponCall.ToLower()} σου και πήγαινε στο δάσος. Αλλά πρώτα, άσε με να σου κάνω ένα μαγικό ξόρκι για να είσαι πιο υγειής.");
+            Console.WriteLine($"- Δεν έχουμε χρόνο να σου εξηγήσω λεπτομέρειες βάρβαρε {heroNameCall}, αλλά σε γενικές γραμμές πρέπει να σκοτώσεις τον Μεγάλο Κακό {bossNameCall}. Πάρε γρήγορα {weaponCall.ToLower()} σου και έλα να με βρεις στο κάστρο. Αλλά πρώτα, άσε με να σου κάνω ένα μαγικό ξόρκι για να είσαι πιο υγιής.");
 
 
             // Ζάρι
