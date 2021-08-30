@@ -15,11 +15,12 @@ namespace TextBasedAdventure
         bool purchased2 = false;
         bool purchased3 = false;
         bool purchased4 = false;
+        bool purchased5 = false;
 
         TextBasedAdventure.NameCallClass newNameCall = new TextBasedAdventure.NameCallClass();
         TextBasedAdventure.Mechanics mechanics = new TextBasedAdventure.Mechanics();
 
-        public void NewMerchant(string newHeroName, int newLife, string newWeapon, string newWeaponCall, int newWeaponDMG, string newArmor, string newArmorCall, int newArmorDEF, int newPotion, int newGold, string oldSpecialItem, string newArea, string newMerchName, out string returnToArea, out string purchasedWeapon, out string purchasedWeaponCall, out int purchasedWeaponDMG, out string purchasedArmor, out string purchasedArmorCall, out int purchasedArmorDEF, out int goldAfterShop, out int potionsAfterShop, out string newSpecialItem)
+        public void NewMerchant(string newHeroName, int newLife, string newWeapon, string newWeaponCall, int newWeaponDMG, string newArmor, string newArmorCall, int newArmorDEF, int newPotion, int newGold, string oldSpecialItem, string defaulSpecialItemQuest, string lampInput, string newArea, string newMerchName, out string returnToArea, out string purchasedWeapon, out string purchasedWeaponCall, out int purchasedWeaponDMG, out string purchasedArmor, out string purchasedArmorCall, out int purchasedArmorDEF, out int goldAfterShop, out int potionsAfterShop, out string newSpecialItem, out string lamp)
         {
 
             newNameCall.NameCall(newHeroName, out name, out nameCall, out nameRef, out nameOf);
@@ -35,16 +36,15 @@ namespace TextBasedAdventure
             potionsAfterShop = newPotion;
             newSpecialItem = oldSpecialItem;
             purchasedArmorCall = newArmorCall;
-            
+            lamp = lampInput;
 
             while (exitShop == false)
             {
 
                 Console.Clear();
                 mechanics.ShowLife(newLife);
-                mechanics.ShowInventory(newWeapon, newWeaponDMG, newArmor, newArmorDEF, newPotion, newGold, oldSpecialItem);
+                mechanics.ShowInventory(newWeapon, newWeaponDMG, newArmor, newArmorDEF, newPotion, newGold, oldSpecialItem, lampInput);
                 mechanics.ShowArea(newArea);
-
 
                 Console.WriteLine();
                 Console.WriteLine($"- Καλημέρα βάρβαρε {nameCall}, είπε ο {newMerchName}, ο έμπορος του χωριού.");
@@ -54,19 +54,24 @@ namespace TextBasedAdventure
 
                 string item1Name = "Κοφτεροί σουγιάδες";
                 string item1NameCall = "τους κοφτερούς σουγιάδες";
-                int item1DMG = 5;
-                int price1 = 6;
+                int item1DMG = 10;
+                int price1 = 35;
 
-                string item2Name = "Ατσάλινη πανοπλία";
-                string item2NameCall = "την ατσάλινη πανοπλία";
-                int item2DEF = 4;
-                int price2 = 6;
+                string item2Name = "Πέτρινη πανοπλία";
+                string item2NameCall = "την πέτρινη πανοπλία";
+                int item2DEF = 3;
+                int price2 = 50;
 
-                string item3Name = "Μυστήριο κουτάκι";
-                string item3NameCall = "το μυστήριο κουτάκι";
-                int price3 = 6;
+                string item3Name = "Τσιμπλοφάναρο";
+                int price3 = 40;
 
-                int price4 = 2;
+                // Εντυπωσιακό αντικείμενο
+                string item4Name = defaulSpecialItemQuest;
+                string item4NameCall = $"το {defaulSpecialItemQuest.ToLower()}";
+                int price4 = 100;
+
+                // Potion
+                int price5 = 10;
 
 
                 if (newWeapon == item1Name)
@@ -100,8 +105,7 @@ namespace TextBasedAdventure
                     Console.ResetColor();
                 }
 
-
-                if (oldSpecialItem == item3Name)
+                if (lampInput == item3Name)
                 {
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.WriteLine($"[3] {item3Name}");
@@ -116,12 +120,29 @@ namespace TextBasedAdventure
                     Console.ResetColor();
                 }
 
-                    Console.Write($"[4] Φίλτρο +50 HP, ");
+
+
+                if (oldSpecialItem == item4Name || oldSpecialItem == "itemQuestComplete")
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.WriteLine($"[4] {item4Name}");
+                    Console.ResetColor();
+                }
+
+                else
+                {
+                    Console.Write($"[4] {item4Name}, ");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"{price4} χρυσά.");
                     Console.ResetColor();
+                }
+
+                    Console.Write($"[5] Φίλτρο +50 HP, ");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{price5} χρυσά.");
+                    Console.ResetColor();
                 
-                Console.WriteLine("[5] Επιστροφή στο χωριό");
+                Console.WriteLine("[6] Επιστροφή στο χωριό");
 
                 Console.WriteLine();
 
@@ -133,7 +154,7 @@ namespace TextBasedAdventure
                 {
                     if (newWeapon == item1Name)
                     {
-                        
+
                     }
 
                     else
@@ -162,9 +183,7 @@ namespace TextBasedAdventure
                             Console.WriteLine();
                             mechanics.PressAnyKey();
                         }
-
                     }
-
                 }
 
                 else if (merchChoice == "2")
@@ -182,7 +201,7 @@ namespace TextBasedAdventure
                             newArmor = item2Name;
                             newGold = newGold - price2;
                             newArmorDEF = item2DEF;
-                            purchasedArmorCall = item2NameCall;
+                            newArmorCall = item2NameCall;
                             purchased2 = true;
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"Αγόρασες {item2NameCall}!");
@@ -201,13 +220,12 @@ namespace TextBasedAdventure
                             mechanics.PressAnyKey();
                         }
                     }
-
                 }
 
                 else if (merchChoice == "3")
                 {
 
-                    if (purchased3 == true)
+                    if (lampInput == item3Name)
                     {
 
                     }
@@ -216,11 +234,11 @@ namespace TextBasedAdventure
                     {
                         if (newGold >= price3)
                         {
-                            oldSpecialItem = item3Name;
-                            newGold = newGold - price2;
+                            newGold = newGold - price3;
+                            lampInput = item3Name;
                             purchased3 = true;
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Αγόρασες {item3NameCall}!");
+                            Console.WriteLine($"Αγόρασες το {item3Name.ToLower()}!");
                             Console.ResetColor();
                             mechanics.PressAnyKey();
 
@@ -235,24 +253,54 @@ namespace TextBasedAdventure
                             Console.WriteLine();
                             mechanics.PressAnyKey();
                         }
-
                     }
-
                 }
 
                 else if (merchChoice == "4")
                 {
 
-                    if (newGold >= price3)
+                    if (oldSpecialItem == item4Name || oldSpecialItem == "itemQuestComplete")
+                    {
+
+                    }
+
+                    else
+                    {
+                        if (newGold >= price4)
+                        {
+                            oldSpecialItem = item4Name;
+                            newGold = newGold - price4;
+                            purchased4 = true;
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine($"Αγόρασες {item4NameCall}!");
+                            Console.ResetColor();
+                            mechanics.PressAnyKey();
+                        }
+
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Δεν έχεις αρκετό χρυσό.");
+                            Console.ResetColor();
+                            Console.WriteLine();
+                            mechanics.PressAnyKey();
+                        }
+                    }
+                }
+
+                else if (merchChoice == "5")
+                {
+
+                    if (newGold >= price5)
                     {
                         newPotion++;
-                        newGold = newGold - price2;
-                        purchased4 = true;
+                        newGold = newGold - price5;
+                        purchased5 = true;
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"Αγόρασες ένα φίλτρο!");
                         Console.ResetColor();
                         mechanics.PressAnyKey();
-
                     }
 
                     else
@@ -267,7 +315,7 @@ namespace TextBasedAdventure
 
                 }
 
-                else if (merchChoice == "5")
+                else if (merchChoice == "6")
                 {
 
                     exitShop = true;
@@ -275,18 +323,19 @@ namespace TextBasedAdventure
                     purchased2 = false;
                     purchased3 = false;
                     purchased4 = false;
+                    purchased5 = false;
                     purchasedWeapon = newWeapon;
                     purchasedWeaponDMG = newWeaponDMG;
+                    purchasedWeaponCall = newWeaponCall;
+
                     purchasedArmor = newArmor;
                     purchasedArmorDEF = newArmorDEF;
+                    purchasedArmorCall = newArmorCall;
                     goldAfterShop = newGold;
                     potionsAfterShop = newPotion;
                     newSpecialItem = oldSpecialItem;
-                    purchasedWeaponCall = newWeaponCall;
-                    purchasedArmorCall = newArmorCall;
-
-                    returnToArea = "ΧΩΡΙΟ";
-
+                    lamp = lampInput;
+                    returnToArea = "                            ΧΩΡΙΟ";
 
                 }
             }

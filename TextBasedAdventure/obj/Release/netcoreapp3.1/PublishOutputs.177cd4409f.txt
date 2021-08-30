@@ -1,0 +1,4 @@
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/publish/TextBasedAdventure.dll
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/publish/TextBasedAdventure.deps.json
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/publish/TextBasedAdventure.runtimeconfig.json
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/publish/TextBasedAdventure.pdb

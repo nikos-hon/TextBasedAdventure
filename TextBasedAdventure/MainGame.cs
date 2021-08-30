@@ -17,12 +17,15 @@ namespace TextBasedAdventure
             string weapon = null;
             string weaponCall = null;
 
-            int weaponDMG = 2;
+            int weaponDMG = 4;
             string armor = null;
             string armorCall = null;
             int armorDEF = 1;
             int potion = 1;
             int gold = 20;
+            string specialItemQuest = "Μυστήριο κουτάκι";
+            string specialItem = null;
+            string lamp = null;
 
             // Όνομα του ήρωα
             string heroName = null;
@@ -42,10 +45,17 @@ namespace TextBasedAdventure
             string merchNameRef = null;
             string merchNameOf = null;
 
+            // Όνομα του Μεγάλου Κακού
+            string bossName = null;
+            string bossNameCall = null;
+            string bossNameRef = null;
+            string bossNameOf = null;
 
 
+            string devMode = null;
             string navigateMain = null;
-            string specialItem = null;
+
+            bool riddleSolved = false;
 
             // Null παράμετροι για μεθόδους       
             string name = null;
@@ -61,24 +71,18 @@ namespace TextBasedAdventure
             TextBasedAdventure.Mechanics mechanics = new TextBasedAdventure.Mechanics();
             TextBasedAdventure.Battle battle = new TextBasedAdventure.Battle();
             TextBasedAdventure.Merchant merchant = new TextBasedAdventure.Merchant();
+            TextBasedAdventure.FinalBoss boss = new TextBasedAdventure.FinalBoss();
+            TextBasedAdventure.Art art = new TextBasedAdventure.Art();
             Regex onlyLetters = new Regex("^[a-zA-Zα-ωΑ-ΩάόέίύήΆΈΊΌΏΉΎ]*$");
-
-
-
 
 
             // Εισαγωγή  -----------------------------------------------------------------
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("               ΤΟ ΕΠΟΣ ΤΟΥ ΒΑΡΒΑΡΟΥ");
-            Console.WriteLine("         />_________________________________");
-            Console.WriteLine("[########[]_________________________________>");
-            Console.WriteLine("         \\>");
-            Console.WriteLine();
-            Console.ResetColor();
 
-
+            // Art τίτλου
+            art.Title();
 
             // Όνομα του ήρωα
 
@@ -90,16 +94,53 @@ namespace TextBasedAdventure
             {
                 heroName = Console.ReadLine();
 
+                // Ενεργοποίηση dev mode
+
+                if (heroName == "dev" || heroName == "Dev" || heroName == "DEV")
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine();
+                    Console.WriteLine("--- Dev mode ---------------------");
+                    Console.WriteLine();
+                    Console.WriteLine("[1] Πλήρες inventory");
+                    Console.WriteLine("[2] Λύση γρίφου");
+                    Console.WriteLine("[3] Πλήρες inventory + λύση γρίφου");
+                    Console.WriteLine("[4] Κανονικό παιχνίδι");
+                    Console.WriteLine();
+
+                    devMode = Console.ReadLine();
+
+                    switch (devMode)
+                    {
+                        case "1":
+                        case "3":
+                            gold = 999;
+                            life = 100;
+                            potion = 99;
+                            break;
+
+                        case "4":
+                            devMode = null;
+                            break;
+                    }
+
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    Console.WriteLine("Πώς λέγεται ο ήρωάς σου;");
+                }
+
                 // Αν δεν βάλει όνομα ήρωα, μπαίνει προεπιλεγμένο
 
-                if (string.IsNullOrEmpty(heroName))
+                else if (string.IsNullOrEmpty(heroName))
                 {
                     heroName = "Κόναρ";
                     Console.WriteLine("Κόναρ");
                     validHeroName = true;
                 }
 
-                if (onlyLetters.IsMatch(heroName))
+                // Πρέπει να είναι μόνο γράμματα. Δεν επιτρέπω σκέτες τις καταλήξεις γιατί δημιουργεί πρόβλημα στο NameCall()
+
+                else if (onlyLetters.IsMatch(heroName))
                 {
                     if (heroName == "ος" || heroName == "ός" || heroName == "ης" || heroName == "ής" || heroName == "ιος" || heroName == "ας" || heroName == "άς")
                     {
@@ -145,6 +186,8 @@ namespace TextBasedAdventure
                     validWiseName = true;
                     Console.WriteLine("Ιγνάτιος");
             }
+
+                // Πρέπει να είναι μόνο γράμματα. Δεν επιτρέπω σκέτες τις καταλήξεις γιατί δημιουργεί πρόβλημα στο NameCall()
 
                 if (onlyLetters.IsMatch(oldWiseName))
                 {
@@ -219,6 +262,53 @@ namespace TextBasedAdventure
             merchNameRef = nameRef;
             merchNameOf = nameOf;
 
+
+            // Όνομα του Μεγάλου Κακού
+
+            Console.WriteLine();
+            Console.WriteLine("Πώς λέγεται ο Μεγάλος Κακός;");
+
+            bool validBossName = false;
+
+            while (validBossName == false)
+            {
+                bossName = Console.ReadLine();
+
+                // Αν δεν βάλει όνομα σοφού, μπαίνει προεπιλεγμένο
+
+                if (string.IsNullOrEmpty(bossName))
+                {
+                    bossName = "Κοφτεροδόντης";
+                    validBossName = true;
+                    Console.WriteLine("Κοφτεροδόντης");
+                }
+
+                if (onlyLetters.IsMatch(merchName))
+                {
+                    if (merchName == "ος" || merchName == "ός" || merchName == "ης" || merchName == "ής" || merchName == "ιος" || merchName == "ας" || merchName == "άς")
+                    {
+                        Console.WriteLine("Αυτό το όνομα δεν είναι διαθέσιμο, δοκίμασε ξανά.");
+                    }
+
+                    else
+                    {
+                        validBossName = true;
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("Το όνομα πρέπει να περιέχει μόνο γράμματα, δοκίμασε ξανά.");
+                }
+            }
+
+            newNameCall.NameCall(bossName, out name, out nameCall, out nameRef, out nameOf);
+
+            bossName = name;
+            bossNameCall = nameCall;
+            bossNameRef = nameRef;
+            bossNameOf = nameOf;
+
             Console.WriteLine();
             mechanics.PressAnyKey();
 
@@ -251,8 +341,6 @@ namespace TextBasedAdventure
                     break;
                 default:
                     break;
-
-
             }
 
             startEquipment = mechanics.RollDiceMute(4);
@@ -278,21 +366,16 @@ namespace TextBasedAdventure
                     break;
                 default:
                     break;
-
-
             }
-
-
-
 
             // Αρχή ----------------------------------------------------------------------
 
             Console.Clear();
 
-            area = "ΧΩΡΙΟ";
+            area = "                            ΧΩΡΙΟ";
 
             mechanics.ShowLife(life);
-            mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem);
+            mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp);
             mechanics.ShowArea(area);
             Console.WriteLine();
 
@@ -316,11 +399,11 @@ namespace TextBasedAdventure
 
             // Hit or heal
 
-            if (dice <= 13)
+            if (dice <= 10)
             {
-                Console.WriteLine($"Πράσινος καπνός βγήκε από τα αυτιά του βάρβαρου {heroNameCall}, ο οποίος ένιωσε έναν δυνατό πονοκέφαλο.");
+                Console.WriteLine($"Πράσινος καπνός βγήκε από τα αυτιά του βάρβαρου {heroNameOf}, ο οποίος ένιωσε έναν δυνατό πονοκέφαλο.");
                 Console.WriteLine();
-                life = mechanics.ChangeLife(life, 2, "hit", dice);
+                life = mechanics.ChangeLife(life, 1, "hit", dice);
                 Console.WriteLine();
                 Console.WriteLine($"-Ευχαριστώ γέρο-σοφέ {oldWiseNameCall}, μας υποχρέωσες, είπε ο βάρβαρος {heroName}.");
             }
@@ -344,14 +427,12 @@ namespace TextBasedAdventure
 
             bool returnToMainNavigation = true;
 
-
-
             while (returnToMainNavigation = true)
             {
 
                 Console.Clear();
                 mechanics.ShowLife(life);
-                mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem);
+                mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp);
                 mechanics.ShowArea(area);
                 Console.WriteLine();
 
@@ -360,38 +441,33 @@ namespace TextBasedAdventure
                 Console.WriteLine("[1] Στο δάσος");
                 Console.WriteLine("[2] Στη σπηλιά");
                 Console.WriteLine("[3] Στον έμπορο");
+                Console.WriteLine("[4] Στο κάστρο του Μεγάλου Κακού");
                 Console.WriteLine();
 
                 navigateMain = Console.ReadLine();
                 Console.WriteLine();
 
-
-
                 if (navigateMain == "1")
                 {
-                    area = "ΔΑΣΟΣ";
+                    area = "                            ΔΑΣΟΣ";
                     Console.Clear();
                     mechanics.ShowLife(life);
-                    mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem);
+                    mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp);
                     mechanics.ShowArea(area);
 
 
-                    battle.battleEnemy(heroName, life, weapon, weaponCall, weaponDMG, armor, armorDEF, potion, gold, specialItem, area, 1, out battleResult, out life, out potion, out gold);
+                    battle.battleEnemy(heroName, life, weapon, weaponCall, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp, area, 1, bossName, out battleResult, out life, out potion, out gold);
 
 
                     if (battleResult == "gameOver")
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"O {heroName} πέθανε.");
-                        Console.WriteLine("ΤΕΛΟΣ");
-                        Console.ResetColor();
-                        Console.ReadKey();
+
+                        art.Dead(heroName);
                         Environment.Exit(0);
                     }
 
                     else if (battleResult == "enemyDead")
                     {
-
                         Console.WriteLine($"Ο {heroName} συνέχισε το ταξίδι του.");
                         Console.WriteLine();
                         Console.ForegroundColor = ConsoleColor.DarkGray;
@@ -400,8 +476,7 @@ namespace TextBasedAdventure
                         Console.ReadKey();
                         Console.WriteLine();
 
-                        area = "ΧΩΡΙΟ";
-
+                        area = "                            ΧΩΡΙΟ";
                     }
 
                     else if (battleResult == "ran")
@@ -414,49 +489,85 @@ namespace TextBasedAdventure
                         Console.ResetColor();
                         Console.ReadKey();
                         Console.WriteLine();
-                        area = "ΧΩΡΙΟ";
+                        area = "                            ΧΩΡΙΟ";
                     }
 
                 }
 
                 else if (navigateMain == "2")
                 {
-                    area = "ΣΠΗΛΙΑ";
+                    area = "                            ΣΠΗΛΙΑ";
                     Console.Clear();
                     mechanics.ShowLife(life);
-                    mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem);
+                    mechanics.ShowInventory(weapon, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp);
                     mechanics.ShowArea(area);
 
-                    Console.WriteLine();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("...Under construction...");
-                    Console.ResetColor();
-                    Console.ReadKey();
-                    area = "ΧΩΡΙΟ";
 
+                    if (lamp != null)
+                    {
+                        battle.battleEnemy(heroName, life, weapon, weaponCall, weaponDMG, armor, armorDEF, potion, gold, specialItem, lamp, area, 2, bossName, out battleResult, out life, out potion, out gold);
+
+                        if (battleResult == "gameOver")
+                        {
+                            art.Dead(heroName);
+                            Environment.Exit(0);
+                        }
+
+                        else if (battleResult == "enemyDead")
+                        {
+                            Console.WriteLine($"Ο {heroName} συνέχισε το ταξίδι του.");
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine("[Πάτα ένα πλήκτρο για να επιστρέψεις στην πόλη...]");
+                            Console.ResetColor();
+                            Console.ReadKey();
+                            Console.WriteLine();
+
+                            area = "ΧΩΡΙΟ";
+                        }
+
+                        else if (battleResult == "ran")
+                        {
+
+                            Console.WriteLine($"Ο {heroName} συνέχισε το ταξίδι του.");
+                            Console.WriteLine();
+                            Console.ForegroundColor = ConsoleColor.DarkGray;
+                            Console.WriteLine("[Πάτα ένα πλήκτρο για να επιστρέψεις στην πόλη...]");
+                            Console.ResetColor();
+                            Console.ReadKey();
+                            Console.WriteLine();
+                            area = "                            ΧΩΡΙΟ";
+                        }
+                    }
+
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine($"Ο βάρβαρος {heroName} μπήκε στη σπηλιά. Ήταν θεοσκότεινα και δεν έβλεπε την τύφλα του.");
+                        Console.ResetColor();
+                        Console.WriteLine();
+                        Console.ReadKey();
+                        area = "                            ΧΩΡΙΟ";
+                    }
                 }
 
                 else if (navigateMain == "3")
                 {
-                    area = "ΕΜΠΟΡΟΣ";
+                    area = "                           ΕΜΠΟΡΟΣ";
 
                    
-                    merchant.NewMerchant(heroName, life, weapon, weaponCall, weaponDMG, armor, armorCall, armorDEF, potion, gold, specialItem, area, merchName, out area, out weapon, out weaponCall, out weaponDMG, out armor, out armorCall, out armorDEF, out gold, out potion, out specialItem);
+                    merchant.NewMerchant(heroName, life, weapon, weaponCall, weaponDMG, armor, armorCall, armorDEF, potion, gold, specialItem, specialItemQuest, lamp, area, merchName, out area, out weapon, out weaponCall, out weaponDMG, out armor, out armorCall, out armorDEF, out gold, out potion, out specialItem, out lamp);
 
+                }
+
+                else if (navigateMain == "4")
+                {
+                    area = "                      ΚΑΣΤΡΟ ΤΟΥ ΜΕΓΑΛΟΥ ΚΑΚΟΥ";
+
+                    boss.newBoss(heroName, oldWiseName, life, weapon, weaponCall, weaponDMG, armor, armorCall, armorDEF, potion, gold, specialItem, specialItemQuest, lamp, area, bossName, riddleSolved, devMode, out area, out specialItem, out weapon, out weaponCall, out weaponDMG, out riddleSolved);
 
                 }
             }
-
-                // ΤΕΛΟΣ
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("...Under construction...");
-                Console.ResetColor();
-                Console.ReadKey();
-                area = "ΧΩΡΙΟ";
-
-
-            
         }
     }
 }

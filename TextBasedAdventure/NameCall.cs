@@ -32,6 +32,40 @@ namespace TextBasedAdventure
                     // Console.ResetColor();
                 }
 
+                else if (nameEndingThree == "χος")
+                {
+                    name = nameInput;
+                    nameCall = nameInput.Remove(name.Length - 2, 2) + "ε";
+                    nameRef = nameInput.Remove(name.Length - 1, 1);
+                    nameOf = nameInput.Remove(name.Length - 1, 1) + "υ";
+
+                    // Console.ForegroundColor = ConsoleColor.Green;
+                    // Console.WriteLine();
+                    // Console.WriteLine($"Περίπτωση 1 -ιος");
+                    // Console.WriteLine($"Το όνομα είναι {name}");
+                    // Console.WriteLine($"Με φωνάζουν {nameCall}");
+                    // Console.WriteLine($"Αναφέρονται στον {nameRef}");
+                    // Console.WriteLine($"Αντικείμενα του {nameOf}");
+                    // Console.ResetColor();
+                }
+
+                else if (nameEndingThree == "ρος")
+                {
+                    name = nameInput;
+                    nameCall = nameInput.Remove(name.Length - 2, 2) + "ε";
+                    nameRef = nameInput.Remove(name.Length - 1, 1);
+                    nameOf = nameInput.Remove(name.Length - 1, 1) + "υ";
+
+                    // Console.ForegroundColor = ConsoleColor.Green;
+                    // Console.WriteLine();
+                    // Console.WriteLine($"Περίπτωση 1 -ιος");
+                    // Console.WriteLine($"Το όνομα είναι {name}");
+                    // Console.WriteLine($"Με φωνάζουν {nameCall}");
+                    // Console.WriteLine($"Αναφέρονται στον {nameRef}");
+                    // Console.WriteLine($"Αντικείμενα του {nameOf}");
+                    // Console.ResetColor();
+                }
+
                 else
                 {
                     name = nameInput;

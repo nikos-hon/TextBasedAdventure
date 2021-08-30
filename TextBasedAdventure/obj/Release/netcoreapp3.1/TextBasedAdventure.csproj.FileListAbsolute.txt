@@ -3,10 +3,11 @@
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/TextBasedAdventure.runtimeconfig.dev.json
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/TextBasedAdventure.dll
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/bin/Release/netcoreapp3.1/TextBasedAdventure.pdb
-/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.csprojAssemblyReference.cache
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.AssemblyInfoInputs.cache
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.AssemblyInfo.cs
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.csproj.CoreCompileInputs.cache
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.dll
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.pdb
 /Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.genruntimeconfig.cache
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.csproj.AssemblyReference.cache
+/Users/Nikos/Documents Nikos/C#/Projects/TextBasedAdventure/TextBasedAdventure/obj/Release/netcoreapp3.1/TextBasedAdventure.GeneratedMSBuildEditorConfig.editorconfig
